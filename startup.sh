@@ -1,20 +1,18 @@
 #!/bin/bash
 
-# Capture Render's provided port dynamically
-PORT=${PORT:-8080}
+# Dynamic PORT detection from the Render environment
+SERVICE_PORT=${PORT:-8080}
 
-# Starting Weaviate on the port specified
-echo "Starting Weaviate..."
-docker run -d --name weaviate -p ${PORT}:8080 semitechnologies/weaviate:latest
-echo "Weaviate started on ${PORT}."
+echo "Starting Weaviate on ${SERVICE_PORT}..."
+docker run -d --name weaviate -p ${SERVICE_PORT}:8080 semitechnologies/weaviate:latest
 
-# Starting Ollama on its own dedicated port
+echo "Starting Ollama on 8000..."
 docker run -d --name ollama -p 8000:8000 ollama/ollama:latest
-echo "Ollama started on port 8000."
 
-# Starting Verba on its own dedicated port
+echo "Starting Verba on 8081..."
 docker run -d --name verba -p 8081:8081 aweful/verba:latest
-echo "Verba started on port 8081."
+
+echo "Startup complete. Services running on their respective ports."
 
 # Keep script running
 tail -f /dev/null
