@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  weaviate:
+    image: aweful/weaviate:latest
+    container_name: weaviate
+    ports:
+      - "8080:8080"
+    environment:
+      - WEAVIATE_ALLOW_ADDITIONAL_SCHEMAS=true
+      - WEAVIATE_LOGGING_LEVEL=info
+      - WEAVIATE_INSTANCE_NAME=weaviate
+      - WEAVIATE_SIMPLE_AUTHENTICATION=true
+      # Add additional environment variables as necessary
+    depends_on:
+      - verba
+
+  verba:
+    image: aweful/verba:latest
+    container_name: verba
+    ports:
+      - "8000:8000"
+    environment:
+      - VERBA_API_PORT=8000
+      - WEAVIATE_URL=http://weaviate:8080
+      - OLLAMA_URL=http://ollama:9000
+      # You can also add specific authentication or API endpoint keys here.
+
+  ollama:
+    image: aweful/ollama:latest
+    container_name: ollama
+    ports:
+      - "9000:9000"
+    environment:
+      - OLLAMA_MODEL="llama2"
+      - OLLAMA_PORT=9000
+      # Example: Add environment variables for credentials or configuration.
+
+networks:
+  default:
+    external: false
