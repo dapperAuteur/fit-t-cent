@@ -1,29 +1,24 @@
-# Base image
-FROM ubuntu:20.04
+# Use a base image
+FROM your-base-image
 
-# Install necessary dependencies
-RUN apt-get update && apt-get install -y \
-  curl \
-  bash \
-  && rm -rf /var/lib/apt/lists/*
+# Set environment variables
+ENV PORT=8080
 
-# Set environment variables for ports
-ENV WEAVIATE_PORT=${PORT:-8080}
-ENV OLAMA_PORT=8000
-ENV VERBA_PORT=8081
-
-# Install docker-compose
-RUN curl -L https://github.com/docker/compose/releases/download/v2.24.0/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose && \
-    chmod +x /usr/local/bin/docker-compose
-
-# Expose expected ports for clarity
+# Expose required ports (this is optional; helps with documentation)
 EXPOSE 8080 8000 8081
 
-# Copy the startup script
-COPY ./startup.sh /startup.sh
+# Copy necessary files into the container
+COPY . /app
 
-# Grant permissions for execution
-RUN chmod +x /startup.sh
+# Set working directory
+WORKDIR /app
 
-# Set the default start command
-CMD ["/startup.sh"]
+# Install dependencies (if required)
+RUN yarn install
+
+# Use a startup script to handle dynamic port binding
+COPY ./startup.sh /app/startup.sh
+RUN chmod +x /app/startup.sh
+
+# Start the service with the startup script
+CMD ["/app/startup.sh"]
