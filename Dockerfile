@@ -1,5 +1,5 @@
 # Use a base image
-FROM your-base-image
+FROM ubuntu:20.04
 
 # Set environment variables
 ENV PORT=8080
