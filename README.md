@@ -7,6 +7,8 @@
 
 Fit T. Cent is an AI-powered fitness assistant that helps answer questions about fitness, wellness, and nutrition. Think of it as a smart study buddy that can help you learn about staying healthy!
 
+[![Watch the "What is Fit T. Cent?" video]](https://www.youtube.com/watch?v=jjnc3fXDXnY)
+
 ![Fit T. Cent](assets/Fit T Cent RAG Thumbnail.png)
 
 ## Quick Start Guide
@@ -81,6 +83,7 @@ Fit T. Cent is an AI-powered fitness assistant that helps answer questions about
 ## Features
 
 - Ask questions about fitness and wellness
+  - Or train it for the topic/subject of your choice
 - Get evidence-based answers
 - Easy-to-use web interface
 - Privacy-focused (runs on your computer)
@@ -112,7 +115,7 @@ Need assistance? Here's how to get help:
 
 - Check the [Troubleshooting Guide](#troubleshooting)
 - Visit the Weaviate [Support Forum](https://forum.weaviate.io/)
-- Chat: [Real-Time Chat with me at AwesomeWebStore.com](AwesomeWebStore.com)
+- Chat: [Real-Time Chat with BAM at AwesomeWebStore.com](AwesomeWebStore.com)
 
 ## For Developers
 
